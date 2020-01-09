@@ -11,10 +11,29 @@
 |
 */
 
+use Illuminate\Http\Request;
+
 Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('produtos','MeuControlador@produtos');
+Route::get('nome','MeuControlador@getNome');
+Route::get('idade','MeuControlador@getIdade');
+Route::get('multiplicar/{n1}/{n2}','MeuControlador@multiplicar');
+
+
+Route::resource('clientes', 'ClienteControlador');
+
+
+
+
+
+/*
+Modulo sobre rotas.... comentado para n atrapalahar o proximo modulo
+*
+*
+*
 Route::get ('/teste/{nome}/{sobrenome}', function($nome, $sobre) {
     echo "ola ".$nome." bem vindo, $sobre !";
 });
@@ -39,11 +58,53 @@ Route::get ('/rotacomregra/{nome}/{n}', function($nome,$n) {
 Route::prefix ('/app')->group(function() {
     Route::get('/', function () {
         return  view('app');
-    });   
+    })->name('app'); 
+
     Route::get('/user', function () {
         return view('user');
-    }); 
+    })->name('app_user');  
+
     Route::get('/profile', function () {
         return view('profile');
-    }); 
+    })->name('app_profile');  
 });
+
+Route::get('/produtos', function(){
+    echo "<h1>produtos</h1>";
+})->name('meusprodutos');
+
+Route::redirect('todosprodutos', 'produtos', 301);
+
+Route::get('todosprodutos2', function(){
+
+    return redirect()->route('meusprodutos');
+
+});
+
+
+/////////////////////////////////////////////////////////////////
+
+
+Route:: post('requisicoes', function(Request $request){
+    return 'hello post';
+});
+
+Route:: delete('requisicoes', function(Request $request){
+    return 'hello delete';
+});
+
+Route:: put('requisicoes', function(Request $request){
+    return 'hello put';
+});
+
+Route:: patch('requisicoes', function(Request $request){
+    return 'hello patch';
+});
+
+Route:: options('requisicoes', function(Request $request){
+    return 'hello options';
+});
+
+Route:: get('requisicoes', function(Request $request){
+    return 'hello get';
+});*/
