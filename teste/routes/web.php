@@ -37,6 +37,10 @@ Route::get('opcoes/{opcao?}', function($opcao=null){
 
 })->name('opcoes');
 
+Route:: get('bootstrap', function(){
+    return view('outras.exemplo');
+});
+
 
 
 
