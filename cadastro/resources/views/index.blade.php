@@ -1,4 +1,4 @@
-@extends('layout.app')
+@extends('layout.app', ["current"=>"home"])
 @section('body')
 <div class="jumbotton bg-light border border-secondary">
     <div class="row">
