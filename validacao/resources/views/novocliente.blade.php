@@ -21,9 +21,16 @@
                         </div>
                         <div class="card-body">
                             <form action="/cliente" method="post">
+                                @csrf
                                 <div class="form-group">
                                     <label for="nome">Nome do cliente</label>
-                                    <input type="text" id="nome" class="form-control" name="nome" placeholder="Nome do Cliente">
+                                    <input type="text" id="nome" class="form-control {{$errors->has('nome')? 'is-invalid':''}}" name="nome" placeholder="Nome do Cliente">
+                                    @if ($errors->has('nome'))
+                                    <div class="invalid-feedback">
+                                        {{$errors->first()}}
+                                    </div>
+                                        
+                                    @endif
                                 </div>
                                 <div class="form-group">
                                     <label for="idade">Idade do cliente</label>
@@ -41,6 +48,16 @@
                                 <button type="cancel" class="btn btn-sm btn-danger">Cancelar</button>
                             </form>
                         </div>
+                        @if ($errors->any())
+                            <div class="card-footer">
+                                @foreach ($errors->all() as $error)
+                                    <div class="alert alert-danger" role="alert">
+                                        {{$error}}    
+                                    </div>    
+                                @endforeach
+                                
+                            </div>
+                        @endif
                     </div>
                 </div>
             </div>
